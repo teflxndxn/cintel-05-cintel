@@ -71,3 +71,7 @@ git push -u origin main
 ## Enable GitHub Pages
 
 Go to your GitHub repo settings and enable GitHub Pages for the docs folder.
+
+## Explore
+
+Implement better icons for the dashboard.
