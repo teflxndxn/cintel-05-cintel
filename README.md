@@ -1,100 +1,97 @@
-# cintel-05-cintel-fancy
+# cintel-05-cintel
+# Module CC5.2: Use a Python Deque
 
-A bit nicer looking live data example (using random, updating 1x/second)
+## Overview
+This project demonstrates the use of the Python `collections.deque` data structure to efficiently manage and analyze recent data points in a live data stream. Deques allow adding and removing items from both ends, making them ideal for sliding window analytics on streaming data.
 
-Uses:
+## What I Learned
+- The `deque` class is part of the Python Standard Library (`collections` module), so it requires no extra installation.
+- Deques can be initialized empty or with existing lists.
+- Items can be appended to the right (newest) or left (oldest) end.
+- Items can be removed from the right or left using `pop()` and `popleft()`.
+- Using the `maxlen` parameter limits the deque size, automatically discarding the oldest data when new items are appended beyond the max length.
+- These features make `deque` perfect for continuous intelligence and real-time analytics on streaming data.
 
-- Python Standard Libary Packages for fake live data (random, datetime)
-- Python Standard Library Collections Package Deque for storing the last N readings
-- A Python dictionary to hold each fake data reading (e.g. temperature and time)
-- Pandas for data and display in preparation for charting
-- PyShiny Express for building reactive apps for continuous intelligence
-- UI: Sketches a possible layout
-- UI: Adds a PyShiny Value Box with a Font Awesome Icon and 3 strings
+## How I Implemented It
+- Created empty and pre-filled deques representing temperature readings in Fahrenheit and Celsius.
+- Practiced appending new data points and removing old ones.
+- Used the `len()` function to get the current size of the deque.
+- Cleared a deque to reset data for a new cycle.
+- Simulated a live stream of Microsoft stock prices with a max length deque, showing automatic removal of the oldest prices when new ones come in.
 
-## Try It in the Browser
+## Running the Code
+Run the `dashboard/app.py` file using Python in your terminal:
 
-Go to PyShiny Playground at <https://shinylive.io/py/examples/#basic-app>.
-Copy and paste content from [dashboard/app.py](dashboard/app.py) and run.
-The PyShiny Playground includes these packages already, so you won't need requirements.txt:
-
-- <https://shiny.posit.co/py/docs/shinylive.html#python-packages>
-
-## Get the Code
-
-Fork this project into your own GitHub account and/or just borrow code from app.py.
-Clone your GitHub repo down to your local machine.
-Use your GitHub **username** in place of denisecase and your GitHub **repo name** in place of cintel-05-cintel-fancy.
-[GitHub CLI](https://cli.github.com/) may work better on some machines.
-
-```shell
-git clone https://github.com/denisecase/cintel-05-cintel-fancy
+```bash
+python dashboard/app.py
 ```
 
-## Run Locally - Initial Start
 
-After cloning your project down to your Documents folder, open the project folder for editing in VS Code.
+## Interactive App with Continuous Intelligence
 
-Create a local project virtual environment named .venv, activate it, and install the requirements.
+This project demonstrates a live dashboard built with PyShiny Express that updates continuously with simulated real-time data. It showcases key concepts of continuous intelligence by displaying live values, a live data grid, and an interactive chart with a trend line prediction.
 
-When VS Code asks to use it for the workspace, select Yes.
-If you miss the window, after installing, select from the VS Code menu, View / Command Palette, and type "Python: Select Interpreter" and select the .venv folder.
+---
 
-Open a terminal (VS Code menu "View" / "Terminal") in the root project folder and run these commands (for Windows - the activate command is slightly different Linux/Mac).
+## Features
 
-```shell
-py -m venv .venv
-.venv\Scripts\Activate
-py -m pip install --upgrade pip setuptools
-py -m pip install --upgrade -r requirements.txt
+- Simulates live temperature readings updated every second
+- Uses a reactive `deque` to store recent data points
+- Displays current temperature and timestamp in value boxes
+- Shows recent readings in a live data table
+- Interactive Plotly scatter plot with a regression trend line
+- Simple, clean UI with a sidebar for navigation and links
+
+---
+
+## Project Structure
+
+- `dashboard/app.py`: Main app script with UI and reactive logic
+- `README.md`: This documentation file
+- `.gitignore`: Git ignore rules
+- `requirements.txt`: Project dependencies
+
+---
+
+## Setup and Running Locally
+
+1. Clone the repo:
+```bash
+https://github.com/teflxndxn/cintel-05-cintel.git 
 ```
 
-Open a terminal (VS Code menu "View" / "Terminal") in the root project folder and run these commands.
+2. Create and activate a Python virtual environment:
+```bash
+python -m venv .venv
+source .venv/bin/activate # On Windows: .venv\Scripts\activate
+```
 
-```shell
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+4. Run the app:
+```bash
 shiny run --reload --launch-browser dashboard/app.py
 ```
+5. Open the browser if not opened automatically at `http://127.0.0.1:8000/`
 
-Open a browser to <http://127.0.0.1:8000/> and test the app.
+---
 
-## Run Locally - Subsequent Starts
+## Customization and Enhancements
 
-Open a terminal (VS Code menu "View" / "Terminal") in the root project folder and run these commands.
+- Theme and layout can be changed to better suit your domain
+- Replace simulated temperature data with your own live data source
+- Extend charts to reduce flashing on updates or add more analytics
+- Integrate this continuous intelligence app into other projects
 
-```shell
-.venv\Scripts\Activate
-shiny run --reload --launch-browser dashboard/app.py
-```
+---
 
-## After Making Changes, Export to Docs Folder
+## Author
 
-Export to docs folder and test GitHub Pages locally.
+Blessing
 
-Open a terminal (VS Code menu "Terminal" / "New Terminal") in the root project folder and run these commands.
+---
 
-```shell
-shiny static-assets remove
-shinylive export dashboard docs
-py -m http.server --directory docs --bind localhost 8008
-```
 
-Open a browser to <http://[::1]:8008/> and test the Pages app.
 
-## Push Changes back to GitHub
-
-Open a terminal (VS Code menu "Terminal" / "New Terminal") in the root project folder and run these commands.
-
-```shell
-git add .
-git commit -m "Useful commit message"
-git push -u origin main
-```
-
-## Enable GitHub Pages (One-Time)
-
-Go to your GitHub repository settings. 
-Scroll down to the Pages tab.
-Enable GitHub Pages from the **main** branch and from the **docs** folder and click Save.
-Wait to see what you new URL is for the hosted app.
-
-When it's ready, go to the About section of your GitHub repo and set the URL to your GitHub Pages site.
